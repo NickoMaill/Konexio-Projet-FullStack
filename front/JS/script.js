@@ -42,6 +42,7 @@ $(() => {
     
         let textArea = $("#request");
         textArea = textArea.val();
+        
     
         $.ajax({
     
