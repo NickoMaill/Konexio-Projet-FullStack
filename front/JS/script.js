@@ -6,27 +6,29 @@ $("#btnShowData").click(function getAllCountries() {
 
         success: function (data) {
 
-            data.forEach((country) => {
+            data.map((country) => {
 
-                $("#countryName").html(
-                    `${country.name.common}`
+                $("#list").append(
+                    `<h3>${country.name.common}</h3>`
                 );
 
-                $("#capital").html(
-                    `${country.capital}`
+                $("#list").append(
+                    `<li>Capitale : ${country.capital}</li>`
                 );
 
-                $("#subCountry").html(
-                    `${country.region}`
+                $("#list").append(
+                    `<li>Continent : ${country.region}</li>`
                 );
 
                 for(language in country.languages) {
-                    $("#language").html(`${country.languages[language]}`
+                    $("#list").append(
+                        `<li>Langue : ${country.languages[language]}</li>`
                     );
                 }
 
                 for(currencie in country.currencies) {
-                    $("#money").html(`${country.currencies[currencie].name}`
+                    $("#list").append(
+                        `<li>Money : ${country.currencies[currencie].name}</li>`
                     );
 
                 }

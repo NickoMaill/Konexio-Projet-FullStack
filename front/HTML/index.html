@@ -8,22 +8,25 @@
 </head>
 
 <body>
-    <div class="content">
+    <main class="content">
+        <div class="form-div">
+            <form method="get" class="form-country">
+                <div class="form-content">
+                  <label for="name">Entrez le nom d'un pays ici</label>
+                  <input type="text" name="name" id="name" required>
+                </div>
+            </form>
+              
+        </div>
 
         <button id="btnShowData">Show Data</button>
         <div class="show" id="ShowData">
             <ul id="list">
-                
-                <li id="countryName"></li>
-                <li id="capital"></li>
-                <li id ="subCountry"></li>
-                <li id="language"></li>
-                <li id="money"></li>
 
             </ul>
         </div>
 
-    </div>
+    </main>
 
     <script src="/front/JS/jQuery.js" lang="text/javascript"></script>
     <script src="/front/JS/script.js" lang="text/javascript"></script>
