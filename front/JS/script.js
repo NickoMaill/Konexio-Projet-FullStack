@@ -83,10 +83,10 @@ function getMyCountries() {
     let subRegionSelect = document.querySelector("#subRegionMenu");
     subRegionSelect = subRegionSelect.value
 
-    let checkCountry = document.querySelector("#countryNameRadio");
-    let checkCapital = document.querySelector("#capitalRadio");
-    let checkRegion = document.querySelector("#regionRadio");
-    let checkSubRegion = document.querySelector("#subRegionRadio");
+    const checkCountry = document.querySelector("#countryNameRadio");
+    const checkCapital = document.querySelector("#capitalRadio");
+    const checkRegion = document.querySelector("#regionRadio");
+    const checkSubRegion = document.querySelector("#subRegionRadio");
 
     const urlCountry = `https://restcountries.com/v3.1/name/${input}`;
     const urlCapital = `https://restcountries.com/v3.1/capital/${input}`;
@@ -95,7 +95,7 @@ function getMyCountries() {
     let url2 = undefined;
 
     //condition for input radio Country or Capital city
-    
+
     if (checkCountry.checked === true) {
 
         while (list.firstChild) {
@@ -157,7 +157,7 @@ function getMyCountries() {
                 let liSubRegion = document.createElement("li");
                 liSubRegion.className = "data";
                 liSubRegion.textContent = subRegion;
-                
+
 
                 list
                     .appendChild(liCountry)
@@ -192,7 +192,7 @@ function getMyCountries() {
 
 btn.addEventListener("click", (getMyCountries));
 
-//reset button 
+//reset button also load the initial function (getAllMyCountries())
 
 resetBtn.addEventListener("click", () => {
 
@@ -203,4 +203,15 @@ resetBtn.addEventListener("click", () => {
     getAllCountries();
 
 })
+
+//hide & show spinner
+
+let loadingDiv = document.querySelector("#spinner")
+
+loadingDiv.style.display = "none"
+
+fetch.addEventListener("load", () => {
+    loadingDiv.style.display = "flex";
+})
+
 

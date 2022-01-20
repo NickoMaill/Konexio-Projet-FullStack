@@ -1,0 +1,45 @@
+@-webkit-keyframes spinner {
+  to {
+    transform: rotate(360deg) /* rtl:ignore */;
+  }
+}
+
+@-webkit-keyframes spinner {
+    to {
+      transform: rotate(360deg) /* rtl:ignore */;
+    }
+}
+
+.spinner {
+    display: inline-block;
+    width: 4rem;
+    height: 4rem;
+    vertical-align: -0.125em;
+    border: 0.50em solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    -webkit-animation: 0.75s linear infinite spinner;
+    animation: 0.75s linear infinite spinner;
+    color: rgb(129, 39, 39);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .spinner,
+  .spinner-grow {
+      -webkit-animation-duration: 1.5s;
+      animation-duration: 1.5s;
+    }
+}
+
+.visually-hidden,
+.visually-hidden-focusable:not(:focus):not(:focus-within) {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
