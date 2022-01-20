@@ -80,6 +80,8 @@ function getMyCountries() {
     const urlCapital = `https://restcountries.com/v3.1/capital/${input}`;
     let url2 = undefined;
 
+    //condition for input radio Country or Capital city
+
     if (checkCountry.checked === true) {
         url2 = urlCountry 
     } else {url2 = urlCapital}
