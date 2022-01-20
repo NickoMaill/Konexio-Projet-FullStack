@@ -1,13 +1,17 @@
+
+//variable for the country list data, button, and main url
+
 const list = document.querySelector("#countryList");
 const btn = document.querySelector("#btnShowData");
 const url = "https://restcountries.com/v3.1/all";
+
+//Function to get all the country data at page initialization
 
 function getAllCountries() {
 
     fetch(url)
     .then(res => res.json())
     .then(data => {
-        //console.log(data);
         
         data.map((country) => {
             
@@ -47,9 +51,6 @@ function getAllCountries() {
                 liLanguages.className = "data";
                 liLanguages.textContent = languages;
                 ul.insertAdjacentElement("beforeend", liLanguages)
-                //console.log(country.languages);
-                // const proLang = Object.getOwnPropertySymbols(languages)
-                // console.log(proLang.length);
             }
             
             for (currency in country.currencies) {
@@ -59,7 +60,6 @@ function getAllCountries() {
                 liMoney.className = "data";
                 liMoney.textContent = money;
                 ul.insertAdjacentElement("beforeend", liMoney)
-                //console.log(liMoney);
             }
             
         });
@@ -67,6 +67,8 @@ function getAllCountries() {
     });
     
 };
+
+//Function to get only one country data by radio select, by country name or Capital city
 
 function getMyCountries() {
 
@@ -122,7 +124,6 @@ function getMyCountries() {
                 liLanguages.className = "data";
                 liLanguages.textContent = languages;
                 ul.insertAdjacentElement("beforeend", liLanguages)
-                //console.log(country.languages);
             };
             
             for (currency in country.currencies) {
@@ -132,7 +133,6 @@ function getMyCountries() {
                 liMoney.className = "data";
                 liMoney.textContent = money;
                 ul.insertAdjacentElement("beforeend", liMoney)
-                //console.log(liMoney);
             };
             
         });
