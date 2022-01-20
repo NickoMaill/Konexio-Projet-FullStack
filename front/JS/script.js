@@ -1,12 +1,9 @@
 const list = document.querySelector("#countryList");
 const btn = document.querySelector("#btnShowData");
-const input = document.querySelector("#request").value;
 const url = "https://restcountries.com/v3.1/all";
-const url2 = `https://restcountries.com/v3.1/name/${input}`;
-//const url3 = `https://restcountries.com/v3.1/capital/${input}`
 
 function getAllCountries() {
-    
+
     fetch(url)
     .then(res => res.json())
     .then(data => {
@@ -72,14 +69,18 @@ function getAllCountries() {
 };
 
 function getMyCountries() {
-    
+
+    let input = document.querySelector("#request");
+    input = input.value
+    const url2 = `https://restcountries.com/v3.1/name/${input}`;
+    const url3 = `https://restcountries.com/v3.1/capital/${input}`
+
     fetch(url2)
     .then(res => res.json())
     .then(data => {
         //console.log(data);
         
         data.map((country) => {
-            
             
             let countryName = `${country.name.common}`;
             let liCountry = document.createElement("li");
@@ -134,12 +135,10 @@ function getMyCountries() {
                 //console.log(liMoney);
             };
             
-            
         });
         
     });
     
 };
-
 
 btn.addEventListener("click", (getMyCountries));

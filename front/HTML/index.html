@@ -1,31 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Countries API</title>
+
 </head>
 
 <!-- onload="getAllCountries()" -->
 
 <body onload="getAllCountries()"> 
+
     <main class="content">
+
         <div class="form-div">
+
             <form method="get" class="form-country">
+
                 <div class="form-content">
                   <label for="name">Entrez le nom d'un pays ici</label>
                   <input type="text" id="request">
                 </div>
+
+                <div class="radio">
+
+                    <div>
+                        <input type="radio" id="CountryNameRadio" name="drone" value="huey"
+                               checked>
+                        <label for="huey">Search by Country name</label>
+                    </div>
+                      
+                    <div>
+                        <input type="radio" id="capitalRadio" name="drone" value="dewey">
+                        <label for="dewey">Search by Capital city</label>
+                    </div>
+
+                </div>
+
             </form>
-            <button id="btnShowData">Show Data</button>
+
+            <div class="btn-place">
+                <button id="btnShowData">Show Data</button>
+            </div>
               
         </div>
 
         <div class="show" id="ShowData">
-            <ul id="countryList">
-
-            </ul>
+            <ul id="countryList"></ul>
         </div>
 
     </main>
