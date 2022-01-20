@@ -3,7 +3,9 @@
 
 const list = document.querySelector("#countryList");
 const btn = document.querySelector("#btnShowData");
+const resetBtn = document.querySelector("#resetBtn")
 const url = "https://restcountries.com/v3.1/all";
+
 
 //Function to get all the country data at page initialization
 
@@ -67,12 +69,6 @@ function getAllCountries() {
         });
 
 };
-
-// btn.addEventListener("click", () => {
-//     let regionSelect = document.querySelector("#subRegionMenu")
-//     regionSelect = regionSelect.value
-//     console.log(regionSelect);
-// })
 
 //Function to get only one country data by radio select, by country name or Capital city
 
@@ -195,4 +191,16 @@ function getMyCountries() {
 };
 
 btn.addEventListener("click", (getMyCountries));
+
+//reset button 
+
+resetBtn.addEventListener("click", () => {
+
+    while (list.firstChild) {
+        list.firstChild.remove()
+    };
+
+    getAllCountries();
+
+})
 
