@@ -1,14 +1,9 @@
 const list = document.querySelector("#countryList");
 const btn = document.querySelector("#btnShowData");
-//const input = document.querySelector("#request").values;
-const url = `https://restcountries.com/v3.1/all`;
-const url2 = "https://restcountries.com/v3.1/name/france"
+const input = document.querySelector("#request").value;
+const url = "https://restcountries.com/v3.1/all";
+const url2 = `https://restcountries.com/v3.1/name/${input}`;
 //const url3 = `https://restcountries.com/v3.1/capital/${input}`
-
-//console.log(input)
-
-
-
 
 function getAllCountries() {
     
