@@ -13,23 +13,22 @@
             <form method="get" class="form-country">
                 <div class="form-content">
                   <label for="name">Entrez le nom d'un pays ici</label>
-                  <input type="text" name="name" id="request">
+                  <input type="text" name="Countries" id="req">
                 </div>
             </form>
-            <button id="btnShowData">Show Data</button>
+            <button onclick="getAllCountries()" id="btnShowData">Show Data</button>
               
         </div>
 
         <div class="show" id="ShowData">
-            <ul id="list">
+            <ul id="countryList">
 
             </ul>
         </div>
 
     </main>
 
-    <script src="/front/JS/jQuery.js" lang="text/javascript"></script>
     <script src="/front/JS/script.js" lang="text/javascript"></script>
-
+    
 </body>
 </html>
