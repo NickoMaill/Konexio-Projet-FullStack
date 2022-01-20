@@ -68,23 +68,50 @@ function getAllCountries() {
     
 };
 
+btn.addEventListener("click", () => {
+    let regionSelect = document.querySelector("#subRegionMenu")
+    regionSelect = regionSelect.value
+    console.log(regionSelect);
+})
+
 //Function to get only one country data by radio select, by country name or Capital city
 
 function getMyCountries() {
 
     let input = document.querySelector("#request");
+    input = input.value;
+
+    let regionSelect = document.querySelector("#regionMenu");
+    regionSelect = regionSelect.value
+
+    let subRegionSelect = document.querySelector("#subRegionMenu");
+    subRegionSelect = subRegionSelect.value
+
     let checkCountry = document.querySelector("#countryNameRadio");
     let checkCapital = document.querySelector("#capitalRadio");
-    input = input.value;
+    let checkRegion = document.querySelector("#regionRadio");
+    let checkSubRegion = document.querySelector("#subRegionRadio")
+
     const urlCountry = `https://restcountries.com/v3.1/name/${input}`;
     const urlCapital = `https://restcountries.com/v3.1/capital/${input}`;
+    const ulrRegion =  `https://restcountries.com/v3.1/region/${regionSelect}`
+    const ulrSubRegion =  `https://restcountries.com/v3.1/region/${subRegionSelect}`
     let url2 = undefined;
 
     //condition for input radio Country or Capital city
 
     if (checkCountry.checked === true) {
-        url2 = urlCountry 
-    } else {url2 = urlCapital}
+        url2 = urlCountry ;
+
+    } else if (checkCapital.checked === true) {
+        url2 = urlCapital;
+
+    } else if (checkRegion.checked === true) {
+        url2 = ulrRegion;
+
+    } else if (checkSubRegion.checked === true){
+        url2 = ulrSubRegion;
+    }
 
     fetch(url2)
     .then(res => res.json())
