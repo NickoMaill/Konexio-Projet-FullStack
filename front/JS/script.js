@@ -73,9 +73,16 @@ function getAllCountries() {
 function getMyCountries() {
 
     let input = document.querySelector("#request");
-    input = input.value
-    const url2 = `https://restcountries.com/v3.1/name/${input}`;
-    const url3 = `https://restcountries.com/v3.1/capital/${input}`
+    let checkCountry = document.querySelector("#countryNameRadio");
+    let checkCapital = document.querySelector("#capitalRadio");
+    input = input.value;
+    const urlCountry = `https://restcountries.com/v3.1/name/${input}`;
+    const urlCapital = `https://restcountries.com/v3.1/capital/${input}`;
+    let url2 = undefined;
+
+    if (checkCountry.checked === true) {
+        url2 = urlCountry 
+    } else {url2 = urlCapital}
 
     fetch(url2)
     .then(res => res.json())
@@ -142,3 +149,4 @@ function getMyCountries() {
 };
 
 btn.addEventListener("click", (getMyCountries));
+
