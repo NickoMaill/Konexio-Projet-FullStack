@@ -42,43 +42,47 @@ function getAllCountries() {
                 // let liMoney = document.createElement("li");
                 // liMoney.className = "data";
                 // liMoney.textContent = money;
-                
-                
-                
+
+
+
                 list
-                .appendChild(liCountry)
-                .appendChild(ul)
-                .appendChild(liCapital)
-                .insertAdjacentElement("afterend", liRegion)
-                .insertAdjacentElement("afterend", liSubRegion)
+                    .appendChild(liCountry)
+                    .appendChild(ul)
+                    .appendChild(liCapital)
+                    .insertAdjacentElement("afterend", liRegion)
+                    .insertAdjacentElement("afterend", liSubRegion)
 
 
-                for (language in country.languages) {
-                    
-                    let languages = `Langue : ${country.languages[language]}`
+                for (lang in country.languages) {
+
+
+                    let languages = `Langue : ${country.languages[lang]}`
+
                     let liLanguages = document.createElement("li");
                     liLanguages.className = "data";
                     liLanguages.textContent = languages;
                     ul.insertAdjacentElement("beforeend", liLanguages)
-                    //console.log(liMoney);
+                    //console.log(country.languages);
+                    // const proLang = Object.getOwnPropertySymbols(languages)
+                    // console.log(proLang.length);
                 }
-                
+
                 for (currency in country.currencies) {
-                    
-                    let money = `Monaie : ${country.currencies[currency].name} "${country.currencies[currency].symbol}"  `
+
+                    let money = `Monaie : ${country.currencies[currency].name} "${country.currencies[currency].symbol}"`
                     let liMoney = document.createElement("li");
                     liMoney.className = "data";
                     liMoney.textContent = money;
                     ul.insertAdjacentElement("beforeend", liMoney)
                     //console.log(liMoney);
                 }
-                
+
             });
 
 
 
         });
-        
+
 };
 
 //btn.addEventListener("click", (getAllCountries));
