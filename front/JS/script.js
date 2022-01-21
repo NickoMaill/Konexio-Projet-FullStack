@@ -3,6 +3,7 @@
 
 const list = document.querySelector("#countryList");
 const btn = document.querySelector("#btnShowData");
+const loadBtn = document.querySelector("#btnLoading")
 const resetBtn = document.querySelector("#resetBtn")
 const url = "https://restcountries.com/v3.1/all";
 
@@ -11,9 +12,20 @@ const url = "https://restcountries.com/v3.1/all";
 
 function getAllCountries() {
 
+    //hide "showData" and show "Load Button" when server request
+
+    loadBtn.classList.remove("displayNone")
+    btn.className = "displayNone"
+
+
     fetch(url)
         .then(res => res.json())
         .then(data => {
+
+            //show "showData button" and hide "loadButton" when server finish request
+
+            loadBtn.className = "displayNone"
+            btn.classList.remove("displayNone")
 
             data.map((country) => {
 
@@ -94,9 +106,12 @@ function getMyCountries() {
     const ulrSubRegion = `https://restcountries.com/v3.1/region/${subRegionSelect}`
     let url2 = undefined;
 
-    //condition for input radio Country or Capital city
+    // btn.className = "displayNone"
+    // btn.classList.remove("displayNone")
 
-    if (checkCountry.checked === true) {
+    //condition for input radio Country or Capital city, it clear content when another request is set
+
+    if (checkCountry.checked === true && input !== "") {
 
         while (list.firstChild) {
             list.firstChild.remove()
@@ -104,7 +119,7 @@ function getMyCountries() {
 
         url2 = urlCountry;
 
-    } else if (checkCapital.checked === true) {
+    } else if (checkCapital.checked === true && input !== "") {
 
         while (list.firstChild) {
             list.firstChild.remove()
@@ -129,10 +144,32 @@ function getMyCountries() {
         url2 = ulrSubRegion;
     }
 
+    //condition for error, it call getAllMyFunction for reinitialize button and also made a new research
+    if (input === "") {
+        getAllCountries()
+    }
+
+    //hide "showData" and show "Load Button" when server request
+
+       loadBtn.classList.remove("displayNone")
+       btn.className = "displayNone"
+
     fetch(url2)
         .then(res => res.json())
         .then(data => {
-            //console.log(data);
+
+            //guard for research
+
+            if (data.status === 404) {
+                getAllCountries()
+
+                //don't forget ton write an error sentence here like "oups sorry it's note a Country Name"
+            }
+
+            //show "showData button" and hide "loadButton" when server finish request
+
+            loadBtn.className = "displayNone"
+            btn.classList.remove("displayNone")
 
             data.map((country) => {
 
@@ -186,9 +223,10 @@ function getMyCountries() {
 
             });
 
-        });
+        })
 
 };
+
 
 btn.addEventListener("click", (getMyCountries));
 
@@ -204,14 +242,5 @@ resetBtn.addEventListener("click", () => {
 
 })
 
-//hide & show spinner
-
-let loadingDiv = document.querySelector("#spinner")
-
-loadingDiv.style.display = "none"
-
-fetch.addEventListener("load", () => {
-    loadingDiv.style.display = "flex";
-})
-
-
+// loadBtn.classList.remove("displayNone")
+// btn.className = "displayNone"
