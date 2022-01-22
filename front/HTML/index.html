@@ -97,9 +97,9 @@
                 <div class="btn-place">
                     <div class="button-and-spinner">
                         
-                        <button id="btnShowData" class="btn-show-data">Show Data</button>
+                        <button type="button" id="btnShowData" class="btnShow-data btn btn-outline-dark">Show Data</button>
                         
-                        <button id="btnLoading" class="displayNone btn-outline-dark" type="button" disabled>
+                        <button id="btnLoading" class="displayNone btn btn-outline-dark" type="button" disabled>
                             <span class="spinner-border spinner-border-sm p-1" role="status"
                             aria-hidden="true"></span>
                             Load...
@@ -107,15 +107,16 @@
                         
                     </div>
                     
-                    <button class="reset" onclick="document.getElementById('request').value = ''" id="resetBtn">reset</button>
+                    <button type="button" class="reset btn btn-outline-dark" onclick="document.getElementById('request').value = ''" id="resetBtn">reset</button>
                     
                     <!-- The Modal -->
-                    <div id="myModal" class="modal">
-        
-                        <!-- Modal content -->
-                        <div class="modal-content" id="modalContent">
-                            <span class="close" id="close">&times;</span>
-                        </div>
+                </div>
+
+                <div id="myModal" class="modal">
+    
+                    <!-- Modal content -->
+                    <div class="modal-content" id="modalContent">
+                        <span class="close" id="close">&times;</span>
                     </div>
                 </div>
                 
@@ -135,6 +136,7 @@
     </main>
 
     <script src="/front/JS/script.js" lang="text/javascript"></script>
+    <script src="../JS/bootstrap.js" lang="text/javascript"></script>
     
 </body>
 </html>

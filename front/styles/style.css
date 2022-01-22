@@ -42,10 +42,11 @@ header{
 
 .btn-place{
   display: flex;
+  justify-content: space-between;
   margin-left: 2rem;
 }
 
-.btn-show-data{
+.btnShow-data{
   margin-left: 1rem ;
 }
 
@@ -110,6 +111,7 @@ header{
   align-items: center;
   width: 30rem;
   margin: 1rem;
+
   background-color: #663bb6d7;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
 
@@ -135,6 +137,7 @@ header{
   margin-top: 1rem;
   margin-bottom: 1rem;
   width: 10rem;
+  border-radius: 1rem;
 }
 
 li{

@@ -36,6 +36,7 @@ function getAllCountries() {
 
             loadBtn.className = "displayNone"
             btn.classList.remove("displayNone")
+            btn.className = "btnShow-data btn btn-outline-dark"
 
             /** ************************************************************************ test div ************************************************************************************* */
 
@@ -131,8 +132,8 @@ function getMyCountries() {
     const ulrSubRegion = `https://restcountries.com/v3.1/region/${subRegionSelect}`;
     let url2 = undefined;
 
+    loadBtn.classList.remove("displayNone")
     btn.className = "displayNone"
-    btn.classList.remove("displayNone")
 
     //condition for input radio Country or Capital city, it clear content when another request is set
 
@@ -169,12 +170,12 @@ function getMyCountries() {
 
         document.getElementById('request').value = '';
         url2 = ulrSubRegion;
-        
+
     }
 
     //condition for error, it call getAllMyFunction for reinitialize button and also made a new research
 
-    if (input === "") {
+    if (input === "" && checkCountry.checked === true || checkCapital.checked === true) {
 
         modal.style.display = "block";
 
@@ -194,13 +195,13 @@ function getMyCountries() {
 
     //hide "showData" and show "Load Button" when server request
 
-    loadBtn.classList.remove("displayNone")
-    btn.className = "displayNone"
-    console.log(url2);
-
     fetch(url2)
         .then(res => res.json())
         .then(data => {
+
+            loadBtn.className = "displayNone"
+            btn.classList.remove("displayNone")
+            btn.className = "btnShow-data btn btn-outline-dark"
 
             //guard for research
 
