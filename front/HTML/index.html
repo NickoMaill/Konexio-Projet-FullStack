@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../styles/style.css">
     <link rel="stylesheet" href="../styles/bootstrap.css">
+    <link rel="stylesheet" href="../styles/style.css">
     <title>Countries API</title>
 
 </head>
@@ -17,99 +17,120 @@
 
     <main class="content">
 
-        <div class="form-div">
+        <header>
 
-            <form method="get" class="form-country">
-
-                <div class="form-content">
-                  <label for="name">Entrez le nom d'un pays ici</label>
-                  <input type="text" id="request">
-                </div>
-
-                <div class="radio">
-
-                    <div>
-                        <input type="radio" id="countryNameRadio" name="drone" checked>
-                        <label for="country" class="label-name">Search by Country name</label>
-                    </div>
-                      
-                    <div>
-                        <input type="radio" id="capitalRadio" name="drone">
-                        <label for="country" class="label-name">Search by Capital city</label>
-                    </div>
-
-                    <div>
-                        <input type="radio" id="regionRadio" name="drone">
-                        <label for="regionSelecgt" class="label-name">Show Region</label>
-                        <select name="region" id="regionMenu">
-                            <option value="europe">Europe</option>
-                            <option value="asia">Asia</option>
-                            <option value="africa">Africa</option>
-                            <option value="americas">Americas</option>
-                            <option value="oceania">Oceania</option>
-                          </select>
-                    </div>
-
-                    <div>
-                        <input type="radio" id="subRegionRadio" name="drone">
-                        <label for="subRegionSelect">Show Subregion</label>
-                        <select name="subRegion" id="subRegionMenu">
-                            <option value="northern%20europe">Northern Europe</option>
-                            <option value="central%20europe">Central Europe</option>
-                            <option value="southeast%20europe">Southeast Europe</option>
-                            <option value="sounthern%20europe">Sounthern Europe</option>
-                            <option value="western%20europe">Western Europe</option>
-                            <option value="eastern%20europe">Eastern Europe</option>
-                            <option value="central%20asia">Central Asia</option>
-                            <option value="western%20asia">Western Asia</option>
-                            <option value="southern%20asia">Southern Asia</option>
-                            <option value="eastern%20asia">Eastern Asia</option>
-                            <option value="southEastern%20asia">South-Eastern Asia</option>
-                            <option value="polynesia">Polynesia</option>
-                            <option value="micronesia">Micronesia</option>
-                            <option value="melanesia">Melanesia</option>
-                            <option value="australia%20and%20new%20zealand">Australia and New Zealand</option>
-                            <option value="northern20%africa">Northern Africa</option>
-                            <option value="western%20africa">Western Africa</option>
-                            <option value="middle%20africa">Middle Africa</option>
-                            <option value="eastern%20africa">Eastern Africa</option>
-                            <option value="southern%20africa">Southern Africa</option>
-                            <option value="north%20america">North America</option>
-                            <option value="central%20america">Central America</option>
-                            <option value="south%20america">South America</option>
-                            <option value="caribbean">Caribbean</option>
-                        </select>
-                    </div>
-
-                </div>
-
-            </form>
-
-            <div class="btn-place">
-                <div class="button-and-spinner">
-
-                    <button id="btnShowData">Show Data</button>
+            <div class="form-div">
+                
+                <form method="get" class="form-country">
                     
-                    <button id="btnLoading" class="displayNone btn-outline-dark" type="button" disabled>
-                        <span class="spinner-border spinner-border-sm p-1" role="status"
+                    <div class="search-tools" id="searchTools">
+                        
+                        <div class="form-content">
+                          <label for="name"></label>
+                          <input type="search" class="request-bar" id="request">
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="radio">
+                        
+                        <p>Search by</p>
+                        
+                        <div>
+                            <input type="radio" id="countryNameRadio" name="drone" checked>
+                            <label for="country" class="label-name">Country name</label>
+                        </div>
+                        
+                        <div>
+                            <input type="radio" id="capitalRadio" name="drone">
+                            <label for="country" class="label-name">Capital city</label>
+                        </div>
+                        
+                        <div>
+                            <input type="radio" id="regionRadio" name="drone">
+                            <label for="regionSelecgt" class="label-name">Show Region</label>
+                            
+                            <select name="region" id="regionMenu">
+                                <option value="europe">Europe</option>
+                                <option value="asia">Asia</option>
+                                <option value="africa">Africa</option>
+                                <option value="americas">Americas</option>
+                                <option value="oceania">Oceania</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <input type="radio" id="subRegionRadio" name="drone">
+                            <label for="subRegionSelect">Show Subregion</label>
+                            <select name="subRegion" id="subRegionMenu">
+                                <option value="northern%20europe">Northern Europe</option>
+                                <option value="central%20europe">Central Europe</option>
+                                <option value="southeast%20europe">Southeast Europe</option>
+                                <option value="sounthern%20europe">Sounthern Europe</option>
+                                <option value="western%20europe">Western Europe</option>
+                                <option value="eastern%20europe">Eastern Europe</option>
+                                <option value="central%20asia">Central Asia</option>
+                                <option value="western%20asia">Western Asia</option>
+                                <option value="southern%20asia">Southern Asia</option>
+                                <option value="eastern%20asia">Eastern Asia</option>
+                                <option value="southEastern%20asia">South-Eastern Asia</option>
+                                <option value="polynesia">Polynesia</option>
+                                <option value="micronesia">Micronesia</option>
+                                <option value="melanesia">Melanesia</option>
+                                <option value="australia%20and%20new%20zealand">Australia and New Zealand</option>
+                                <option value="northern20%africa">Northern Africa</option>
+                                <option value="western%20africa">Western Africa</option>
+                                <option value="middle%20africa">Middle Africa</option>
+                                <option value="eastern%20africa">Eastern Africa</option>
+                                <option value="southern%20africa">Southern Africa</option>
+                                <option value="north%20america">North America</option>
+                                <option value="central%20america">Central America</option>
+                                <option value="south%20america">South America</option>
+                                <option value="caribbean">Caribbean</option>
+                            </select>
+                        </div>
+                        
+                    </div>
+                    
+                </form>
+
+                <div class="btn-place">
+                    <div class="button-and-spinner">
+                        
+                        <button id="btnShowData" class="btn-show-data">Show Data</button>
+                        
+                        <button id="btnLoading" class="displayNone btn-outline-dark" type="button" disabled>
+                            <span class="spinner-border spinner-border-sm p-1" role="status"
                             aria-hidden="true"></span>
-                        Load...
-                    </button>
-
+                            Load...
+                        </button>
+                        
+                    </div>
+                    
+                    <button class="reset" onclick="document.getElementById('request').value = ''" id="resetBtn">reset</button>
+                    
+                    <!-- The Modal -->
+                    <div id="myModal" class="modal">
+        
+                        <!-- Modal content -->
+                        <div class="modal-content" id="modalContent">
+                            <span class="close" id="close">&times;</span>
+                        </div>
+                    </div>
                 </div>
-
-                <button class="reset" id="resetBtn">reset</button>
                 
             </div>
-              
-        </div>
+            
+            
+            
+        </header>
+        
+        <section class="country-request" id="countryRequest">
+            <div class="show" id="mainList"></div>
 
-        <div class="show" id="ShowData">
+        </section>
 
-
-            <ul class="list" id="countryList"></ul>
-
-        </div>
+        <footer></footer>
 
     </main>
 

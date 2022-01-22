@@ -1,14 +1,24 @@
 
-//variable for the country list data, button, and main url
+//variable for the country mainList data, button, and main url
 
-const list = document.querySelector("#countryList");
+const mainList = document.querySelector("#mainList");
 const btn = document.querySelector("#btnShowData");
 const loadBtn = document.querySelector("#btnLoading")
 const resetBtn = document.querySelector("#resetBtn")
 const url = "https://restcountries.com/v3.1/all";
+const modalDiv = document.querySelector("#modalContent")
+const modal = document.querySelector("#myModal");
+const closeCross = document.querySelector("#close")
+let errorText = "Sorry maybe you should retry whit a correct value ... 😕 "
+let errorEmpty = "Sorry maybe you should type a value ... 😕 "
+let modalElement = document.createElement("p")
+let modalElement2 = document.createElement("p")
+modalElement.className = "modalTextError"
+modalElement.textContent = errorText
+modalElement2.className = "modalTextError"
+modalElement2.textContent = errorEmpty
 
-
-//Function to get all the country data at page initialization
+/**************************************************** Function to get all the country data at page initialization ************************************************************/
 
 function getAllCountries() {
 
@@ -27,14 +37,19 @@ function getAllCountries() {
             loadBtn.className = "displayNone"
             btn.classList.remove("displayNone")
 
+            /** ************************************************************************ test div ************************************************************************************* */
+
             data.map((country) => {
 
+                let divList = document.createElement("div");
+                divList.className = "countryContent"
+
                 let countryName = `${country.name.common}`;
-                let liCountry = document.createElement("li");
-                liCountry.className = "name";
-                let ul = document.createElement("ul");
-                ul.className = "countryData";
-                liCountry.textContent = countryName;
+                let h3Country = document.createElement("h3");
+                h3Country.className = "name";
+                let ul2 = document.createElement("ul");
+                ul2.className = "countryData";
+                h3Country.textContent = countryName;
 
                 let capital = `Capitale : ${country.capital}`;
                 let liCapital = document.createElement("li");
@@ -51,9 +66,10 @@ function getAllCountries() {
                 liSubRegion.className = "data";
                 liSubRegion.textContent = subRegion;
 
-                list
-                    .appendChild(liCountry)
-                    .appendChild(ul)
+                mainList
+                    .appendChild(divList)
+                    .appendChild(h3Country)
+                    .insertAdjacentElement("afterend", ul2)
                     .appendChild(liCapital)
                     .insertAdjacentElement("afterend", liRegion)
                     .insertAdjacentElement("afterend", liSubRegion)
@@ -64,7 +80,7 @@ function getAllCountries() {
                     let liLanguages = document.createElement("li");
                     liLanguages.className = "data";
                     liLanguages.textContent = languages;
-                    ul.insertAdjacentElement("beforeend", liLanguages)
+                    ul2.insertAdjacentElement("beforeend", liLanguages)
                 }
 
                 for (currency in country.currencies) {
@@ -73,8 +89,16 @@ function getAllCountries() {
                     let liMoney = document.createElement("li");
                     liMoney.className = "data";
                     liMoney.textContent = money;
-                    ul.insertAdjacentElement("beforeend", liMoney)
+                    ul2.appendChild(liMoney);
                 }
+
+                let flag = `${country.flags.png}`;
+                let imgFlag = document.createElement("img");
+                imgFlag.className = "flag";
+                imgFlag.setAttribute("src", flag);
+                divList.appendChild(imgFlag);
+
+
 
             });
 
@@ -82,18 +106,19 @@ function getAllCountries() {
 
 };
 
-//Function to get only one country data by radio select, by country name or Capital city
+/****************************************** Function to get only one country data by radio select, by country name or Capital city *************************************************/
 
 function getMyCountries() {
+
 
     let input = document.querySelector("#request");
     input = input.value;
 
     let regionSelect = document.querySelector("#regionMenu");
-    regionSelect = regionSelect.value
+    regionSelect = regionSelect.value;
 
     let subRegionSelect = document.querySelector("#subRegionMenu");
-    subRegionSelect = subRegionSelect.value
+    subRegionSelect = subRegionSelect.value;
 
     const checkCountry = document.querySelector("#countryNameRadio");
     const checkCapital = document.querySelector("#capitalRadio");
@@ -102,57 +127,76 @@ function getMyCountries() {
 
     const urlCountry = `https://restcountries.com/v3.1/name/${input}`;
     const urlCapital = `https://restcountries.com/v3.1/capital/${input}`;
-    const ulrRegion = `https://restcountries.com/v3.1/region/${regionSelect}`
-    const ulrSubRegion = `https://restcountries.com/v3.1/region/${subRegionSelect}`
+    const ulrRegion = `https://restcountries.com/v3.1/region/${regionSelect}`;
+    const ulrSubRegion = `https://restcountries.com/v3.1/region/${subRegionSelect}`;
     let url2 = undefined;
 
-    // btn.className = "displayNone"
-    // btn.classList.remove("displayNone")
+    btn.className = "displayNone"
+    btn.classList.remove("displayNone")
 
     //condition for input radio Country or Capital city, it clear content when another request is set
 
     if (checkCountry.checked === true && input !== "") {
 
-        while (list.firstChild) {
-            list.firstChild.remove()
+        while (mainList.firstChild) {
+            mainList.firstChild.remove()
         };
 
         url2 = urlCountry;
 
     } else if (checkCapital.checked === true && input !== "") {
 
-        while (list.firstChild) {
-            list.firstChild.remove()
+        while (mainList.firstChild) {
+            mainList.firstChild.remove()
         };
 
         url2 = urlCapital;
 
     } else if (checkRegion.checked === true) {
 
-        while (list.firstChild) {
-            list.firstChild.remove()
+        while (mainList.firstChild) {
+            mainList.firstChild.remove()
         };
 
+        document.getElementById('request').value = '';
         url2 = ulrRegion;
 
     } else if (checkSubRegion.checked === true) {
 
-        while (list.firstChild) {
-            list.firstChild.remove()
+        while (mainList.firstChild) {
+            mainList.firstChild.remove()
         };
 
+        document.getElementById('request').value = '';
         url2 = ulrSubRegion;
+        
     }
 
     //condition for error, it call getAllMyFunction for reinitialize button and also made a new research
+
     if (input === "") {
+
+        modal.style.display = "block";
+
+        modalDiv.appendChild(modalElement2)
+
+        closeCross.addEventListener("click", () => {
+            modal.style.display = "none";
+
+            while (modalDiv.children) {
+                modalDiv.removeChild(modalDiv.children[1])
+            }
+
+        })
+
         getAllCountries()
     }
 
     //hide "showData" and show "Load Button" when server request
 
-       loadBtn.classList.remove("displayNone")
-       btn.className = "displayNone"
+    loadBtn.classList.remove("displayNone")
+    btn.className = "displayNone"
+    console.log(url2);
 
     fetch(url2)
         .then(res => res.json())
@@ -161,10 +205,23 @@ function getMyCountries() {
             //guard for research
 
             if (data.status === 404) {
+
+                modal.style.display = "block";
+
+                modalDiv.appendChild(modalElement)
+
+                closeCross.addEventListener("click", () => {
+                    modal.style.display = "none";
+
+                    while (modalDiv.children) {
+                        modalDiv.removeChild(modalDiv.children[1])
+                    }
+
+                })
+
                 getAllCountries()
 
-                //don't forget ton write an error sentence here like "oups sorry it's note a Country Name"
-            }
+            };
 
             //show "showData button" and hide "loadButton" when server finish request
 
@@ -173,12 +230,15 @@ function getMyCountries() {
 
             data.map((country) => {
 
+                let divList = document.createElement("div");
+                divList.className = "countryContent"
+
                 let countryName = `${country.name.common}`;
-                let liCountry = document.createElement("li");
-                liCountry.className = "name";
-                let ul = document.createElement("ul");
-                ul.className = "countryData";
-                liCountry.textContent = countryName;
+                let h3Country = document.createElement("h3");
+                h3Country.className = "name";
+                let ul2 = document.createElement("ul");
+                ul2.className = "countryData";
+                h3Country.textContent = countryName;
 
                 let capital = `Capitale : ${country.capital}`;
                 let liCapital = document.createElement("li");
@@ -196,12 +256,13 @@ function getMyCountries() {
                 liSubRegion.textContent = subRegion;
 
 
-                list
-                    .appendChild(liCountry)
-                    .appendChild(ul)
+                mainList
+                    .appendChild(divList)
+                    .appendChild(h3Country)
+                    .insertAdjacentElement("afterend", ul2)
                     .appendChild(liCapital)
                     .insertAdjacentElement("afterend", liRegion)
-                    .insertAdjacentElement("afterend", liSubRegion);
+                    .insertAdjacentElement("afterend", liSubRegion)
 
                 for (lang in country.languages) {
 
@@ -209,8 +270,8 @@ function getMyCountries() {
                     let liLanguages = document.createElement("li");
                     liLanguages.className = "data";
                     liLanguages.textContent = languages;
-                    ul.insertAdjacentElement("beforeend", liLanguages)
-                };
+                    ul2.insertAdjacentElement("beforeend", liLanguages)
+                }
 
                 for (currency in country.currencies) {
 
@@ -218,29 +279,31 @@ function getMyCountries() {
                     let liMoney = document.createElement("li");
                     liMoney.className = "data";
                     liMoney.textContent = money;
-                    ul.insertAdjacentElement("beforeend", liMoney)
-                };
+                    ul2.appendChild(liMoney);
+                }
 
+                let flag = `${country.flags.png}`;
+                let imgFlag = document.createElement("img");
+                imgFlag.className = "flag";
+                imgFlag.setAttribute("src", flag);
+
+                divList.appendChild(imgFlag);
             });
 
         })
 
 };
 
-
-btn.addEventListener("click", (getMyCountries));
+btn.addEventListener("click", (getMyCountries))
 
 //reset button also load the initial function (getAllMyCountries())
 
 resetBtn.addEventListener("click", () => {
 
-    while (list.firstChild) {
-        list.firstChild.remove()
+    while (mainList.firstChild) {
+        mainList.firstChild.remove()
     };
 
     getAllCountries();
 
-})
-
-// loadBtn.classList.remove("displayNone")
-// btn.className = "displayNone"
+});

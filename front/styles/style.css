@@ -1,3 +1,143 @@
+body{
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url(/front/img/earth.png);
+  background-size:cover;
+  background-attachment: fixed;
+}
+
 .displayNone{
   display: none;
 }
+
+header{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.form-div{
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+
+.form-country{
+  display: flex;
+  flex-direction: column;
+}
+
+.search-tools{
+  display: flex;
+}
+
+.request-bar{
+  width: 23rem;
+}
+
+
+.btn-place{
+  display: flex;
+  margin-left: 2rem;
+}
+
+.btn-show-data{
+  margin-left: 1rem ;
+}
+
+.radio{
+  display: flex;
+}
+
+.modal {
+  display: none; /*Hidden by default*/
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 40%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  display: flex;
+  flex-direction: row-reverse;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.show{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: space-between;
+  color: #000;
+}
+
+.countryContent{
+  border: solid;
+  border-color: #198754;
+  border-width: 0.5rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30rem;
+  margin: 1rem;
+  background-color: #663bb6d7;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+
+
+}
+
+.countryData{
+  border: solid;
+  margin-top: 1rem;
+  margin-bottom: 0;
+  background-color: beige;
+  width: 80%;
+
+}
+
+.name{
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+  color: #fff;
+}
+
+.flag{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  width: 10rem;
+}
+
+li{
+  padding: 0.5rem;
+}
+
